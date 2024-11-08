@@ -14,6 +14,7 @@ export const Encoder: FC<Props> = ({ onMove, onClick, onLongClick, position, siz
   const knobRef = useRef(null);
   const startRotate = useRef(false);
   let prevValue = 0;
+  let tickCount = 0;
 
   const handleMouseUp = () => {
     window.removeEventListener('mouseup', handleMouseUp);
@@ -22,16 +23,20 @@ export const Encoder: FC<Props> = ({ onMove, onClick, onLongClick, position, siz
   };
 
   const handleMouseMove = (event: MouseEvent) => {
-    if (event.clientX === prevValue) {
+    let direction = 0b1000000;
+    prevValue += event.movementY;
+    tickCount++;
+
+    if (tickCount % 10 !== 0) {
       return;
     }
-    let direction = 0b1000000;
 
-    if (event.clientX > prevValue) {
+    if (prevValue < 0) {
       direction = 0;
     }
-    onMove(Math.abs(event.clientX - prevValue) + direction);
-    prevValue = event.clientX;
+
+    onMove(Math.abs(1) + direction);
+    prevValue = 0;
   };
 
   const handleDoubleClick = () => {
@@ -39,8 +44,6 @@ export const Encoder: FC<Props> = ({ onMove, onClick, onLongClick, position, siz
   };
 
   const handleMouseDown = (event: ReactMouseEvent<HTMLDivElement>) => {
-    console.log({ event });
-
     if (event.shiftKey) {
       onClick(127);
     }
@@ -51,7 +54,6 @@ export const Encoder: FC<Props> = ({ onMove, onClick, onLongClick, position, siz
     startRotate.current = true;
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('mousemove', handleMouseMove);
-    prevValue = event.clientX;
   };
 
   return (

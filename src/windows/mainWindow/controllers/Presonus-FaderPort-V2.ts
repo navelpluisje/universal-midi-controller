@@ -1,21 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ButtonControl } from 'mainWindow/components/MidiButton';
-import { EncoderControl } from 'mainWindow/components/MidiEncoder';
-import { FaderControl } from 'mainWindow/components/MidiFader';
-import { ToggleButtonControl } from 'mainWindow/components/MidiToggleButton';
+import { ControllerDefinition } from './types';
 
-export interface ControllerDefinition {
-  name: string;
-  type: 'MCU' | 'FP';
-  width: number;
-  deviceName: {
-    macOS: string;
-    windows: string;
-  };
-  controls: Array<ButtonControl | FaderControl | ToggleButtonControl | EncoderControl>;
-}
-
-export const PresonusFaderPort: ControllerDefinition = {
+export const PresonusFaderPortV2: ControllerDefinition = {
   name: 'Presonus FaderPort',
   type: 'MCU',
   width: 30,

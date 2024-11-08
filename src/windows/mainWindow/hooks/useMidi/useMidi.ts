@@ -5,7 +5,7 @@ import { midiSelectors, useAppSelector } from 'mainWindow/store';
 
 interface Props {
   command: number;
-  key: number;
+  key?: number;
 }
 
 export const useMidi = ({ command, key }: Props) => {

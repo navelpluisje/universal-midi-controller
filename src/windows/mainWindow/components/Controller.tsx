@@ -1,5 +1,8 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useEffect } from 'react';
 import styled from 'styled-components';
+import { useResizeDetector } from 'react-resize-detector';
+import { ControllerSelect } from './ControllerSelect';
+import { useController } from 'mainWindow/hooks/useController/useController';
 
 interface ControllerAreaProps {
   $width: number;
@@ -11,13 +14,6 @@ const ControllerArea = styled.section<ControllerAreaProps>`
   grid-template-rows: repeat(40, var(--grid-size));
   align-items: center;
   justify-items: center;
-`;
-
-const ControllerName = styled.div`
-  position: absolute;
-  font-size: 16px;
-  top: 8px;
-  right: 16px;
 `;
 
 const ControllerWrapper = styled.div`
@@ -43,16 +39,28 @@ const ControllerWrapper = styled.div`
   }
 `;
 
-interface ControllerProps extends PropsWithChildren {
-  width: number;
-  name: string;
-}
+export const Controller: FC<PropsWithChildren<unknown>> = ({ children }) => {
+  const { activeController } = useController();
+  const { width, height, ref } = useResizeDetector();
 
-export const Controller: FC<ControllerProps> = ({ children, width, name }) => (
-  <ControllerWrapper>
-    <ControllerName>{name}</ControllerName>
-    <ControllerArea $width={width}>
-      {children}
-    </ControllerArea>
-  </ControllerWrapper>
-);
+  useEffect(() => {
+    const size = document.querySelector('.main').getBoundingClientRect();
+
+    try {
+      if (size) {
+        window.midiAPI.setWindowSize({ width: size.width, height: size.height });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, [width, height]);
+
+  return (
+    <ControllerWrapper className='main' ref={ref}>
+      <ControllerSelect />
+      <ControllerArea $width={activeController.width}>
+        {children}
+      </ControllerArea>
+    </ControllerWrapper>
+  );
+};

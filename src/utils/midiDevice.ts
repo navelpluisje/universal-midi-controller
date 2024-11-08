@@ -49,7 +49,6 @@ export class MIDIDevice {
 
   sendMessage(data: MidiMessage) {
     if (this.midiOutput !== null) {
-      console.log('sendMessage', data);
       this.midiOutput.sendMessage(data);
     }
   }

@@ -50,3 +50,8 @@ export type MidiStandardMessage = {
 }
 
 export type MidiUpdateCallback = (type: IpcRendererEvent, message: MidiStandardMessage) => void;
+
+export interface WindowSize {
+  width: number;
+  height: number;
+}

@@ -1,20 +1,21 @@
 // import { useMidiConnection } from './hooks/useMidiConnection';
 import { MidiButton } from './components/MidiButton';
 import { Controller } from './components/Controller';
-import { PresonusFaderPort } from './controllers/Presonus-FaderPort';
 import { MidiFader } from './components/MidiFader';
 import { MidiToggleButton } from './components/MidiToggleButton';
 import { MidiEncoder } from './components/MidiEncoder';
-// import { MidiMcuDisplay } from './components/MidiMcuDisplay';
-// import { MidiTimeCode } from './components/MidiTimeCode';
+import { MidiFPDisplay } from './components/MidiFPDisplay';
+import { MidiVuMeter } from './components/MidiVuMeter';
+import { useController } from './hooks/useController/useController';
 import { Page } from 'shared/components/Page';
 
 export const App = () => {
+  const { activeController } = useController();
+
   return (
     <Page>
-      {/* <Controller width={getControllerWidth(McuStyle.controls)} name={McuStyle.name}> */}
-      <Controller width={PresonusFaderPort.width} name={PresonusFaderPort.name}>
-        {PresonusFaderPort.controls.map((control) => {
+      <Controller>
+        {activeController.controls.map((control) => {
           switch (control.type) {
           case 'Button':
           case 'RoundButton':
@@ -29,8 +30,11 @@ export const App = () => {
           case 'Fader':
             return <MidiFader key={control.uuid} settings={control} />;
 
-            // case 'DisplayMCU':
-            //   return <MidiMcuDisplay key={control.uuid} settings={control} />;
+          case 'VuMeter':
+            return <MidiVuMeter key={control.uuid} settings={control} />;
+
+          case 'DisplayFP':
+            return <MidiFPDisplay key={control.uuid} settings={control} />;
 
             // case 'TimeCode':
             //   return <MidiTimeCode key={control.uuid} settings={control} />;

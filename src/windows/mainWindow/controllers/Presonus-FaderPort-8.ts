@@ -1,19 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ButtonControl } from 'mainWindow/components/MidiButton';
-import { EncoderControl } from 'mainWindow/components/MidiEncoder';
-import { FaderControl } from 'mainWindow/components/MidiFader';
-import { ToggleButtonControl } from 'mainWindow/components/MidiToggleButton';
-
-export interface ControllerDefinition {
-  name: string;
-  type: 'MCU' | 'FP';
-  width: number;
-  deviceName: {
-    macOS: string;
-    windows: string;
-  };
-  controls: Array<ButtonControl | FaderControl | ToggleButtonControl | EncoderControl>;
-}
+import { ControllerDefinition } from './types';
 
 export const PresonusFaderPort: ControllerDefinition = {
   name: 'Presonus FaderPort8',
@@ -130,6 +116,79 @@ export const PresonusFaderPort: ControllerDefinition = {
     color: '#ffff00',
     midi: [0x90, 0x06, 0x7f],
   },
+  // Displays
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 0,
+    position: {
+      x: 12,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 1,
+    position: {
+      x: 20,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 2,
+    position: {
+      x: 28,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 3,
+    position: {
+      x: 36,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 4,
+    position: {
+      x: 44,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 5,
+    position: {
+      x: 52,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 6,
+    position: {
+      x: 60,
+      y: 6,
+    },
+  },
+  {
+    uuid: uuidv4(),
+    type: 'DisplayFP',
+    channel: 7,
+    position: {
+      x: 68,
+      y: 6,
+    },
+  },
   // Select Buttons
   {
     uuid: uuidv4(),
@@ -138,7 +197,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 12,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -152,7 +211,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 20,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -166,7 +225,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 28,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -180,7 +239,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 36,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -194,7 +253,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 44,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -208,7 +267,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 52,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -222,7 +281,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 60,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -236,7 +295,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 68,
-      y: 12,
+      y: 14,
     },
     hasRGB: true,
     hasFeedback: true,
@@ -251,7 +310,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 12,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -265,7 +324,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 20,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -279,7 +338,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 28,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -293,7 +352,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 36,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -307,7 +366,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 44,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -321,7 +380,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 52,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -335,7 +394,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 60,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -349,7 +408,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 68,
-      y: 16,
+      y: 18,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -364,7 +423,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 12,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -378,7 +437,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 20,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -392,7 +451,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 28,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -406,7 +465,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 36,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -420,7 +479,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 44,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -434,7 +493,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 52,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -448,7 +507,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 60,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -462,7 +521,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     size: 'default',
     position: {
       x: 68,
-      y: 20,
+      y: 22,
     },
     hasRGB: false,
     hasFeedback: true,
@@ -475,8 +534,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 12,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe0, 0x7f, 0x7f],
     touch: [0x90, 0x68, 0x7f],
@@ -486,8 +545,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 20,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe1, 0x7f, 0x7f],
     touch: [0x90, 0x69, 0x7f],
@@ -497,8 +556,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 28,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe2, 0x7f, 0x7f],
     touch: [0x90, 0x6a, 0x7f],
@@ -508,8 +567,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 36,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe3, 0x7f, 0x7f],
     touch: [0x90, 0x6b, 0x7f],
@@ -519,8 +578,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 44,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe4, 0x7f, 0x7f],
     touch: [0x90, 0x6c, 0x7f],
@@ -530,8 +589,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 52,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe5, 0x7f, 0x7f],
     touch: [0x90, 0x6d, 0x7f],
@@ -541,8 +600,8 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 60,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe6, 0x7f, 0x7f],
     touch: [0x90, 0x6e, 0x7f],
@@ -552,11 +611,94 @@ export const PresonusFaderPort: ControllerDefinition = {
     type: 'Fader',
     position: {
       x: 68,
-      y: 28,
-      height: 28,
+      y: 30,
+      height: 26,
     },
     midi: [0xe7, 0x7f, 0x7f],
     touch: [0x90, 0x6f, 0x7f],
+  },
+  /**
+   * VU Meters
+   */
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 18,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd0, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 26,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd1, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 34,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd2, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 42,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd3, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 50,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd4, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 58,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd5, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 66,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd6, 0x7f],
+  },
+  {
+    uuid: uuidv4(),
+    type: 'VuMeter',
+    position: {
+      x: 74,
+      y: 36,
+      height: 15,
+    },
+    midi: [0xd7, 0x7f],
   },
   /** 
    * Fader Mode Buttons
@@ -631,8 +773,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    color: '#0000ff',
-    midi: [0x90, 0x08, 0x7f],
+    midi: [0x90, 0x3e, 0x7f],
   },
   {
     uuid: uuidv4(),
@@ -645,8 +786,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    color: '#0000ff',
-    midi: [0x90, 0x09, 0x7f],
+    midi: [0x90, 0x3f, 0x7f],
   },
   {
     uuid: uuidv4(),
@@ -659,8 +799,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    color: '#0000ff',
-    midi: [0x90, 0x0a, 0x7f],
+    midi: [0x90, 0x40, 0x7f],
   },
   {
     uuid: uuidv4(),
@@ -673,8 +812,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    color: '#0000ff',
-    midi: [0x90, 0x0b, 0x7f],
+    midi: [0x90, 0x41, 0x7f],
   },
   {
     uuid: uuidv4(),
@@ -687,8 +825,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    color: '#0000ff',
-    midi: [0x90, 0x0b, 0x7f],
+    midi: [0x90, 0x42, 0x7f],
   },
   /**
    * Shift right
@@ -722,7 +859,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x03, 0x7f],
+    midi: [0x90, 0x4e, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Trim',
@@ -734,7 +871,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x4d, 0x7f],
+    midi: [0x90, 0x4c, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Off',
@@ -746,7 +883,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x4b, 0x7f],
+    midi: [0x90, 0x4f, 0x7f],
   },
   // The second row
   {
@@ -760,7 +897,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x03, 0x7f],
+    midi: [0x90, 0x4d, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Write',
@@ -772,7 +909,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x4d, 0x7f],
+    midi: [0x90, 0x4b, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Read',
@@ -784,7 +921,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     },
     hasRGB: true,
     hasFeedback: true,
-    midi: [0x90, 0x4b, 0x7f],
+    midi: [0x90, 0x4a, 0x7f],
   },
   // Encoder and prev/next
   {
@@ -810,8 +947,8 @@ export const PresonusFaderPort: ControllerDefinition = {
       x: 91,
       y: 26,
     },
-    midi: [0xb0, 0x10, 0x7f],
-    click: [0x90, 0x20, 0x7f],
+    midi: [0xb0, 0x3C, 0x7f],
+    click: [0x90, 0x53, 0x7f],
   },
   {
     uuid: uuidv4(),
@@ -843,7 +980,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffffff',
-    midi: [0x90, 0x05, 0x7f],
+    midi: [0x90, 0x36, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Zoom',
@@ -856,7 +993,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffffff',
-    midi: [0x90, 0x2a, 0x7f],
+    midi: [0x90, 0x37, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Scroll',
@@ -869,7 +1006,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffffff',
-    midi: [0x90, 0x36, 0x7f],
+    midi: [0x90, 0x38, 0x7f],
   }, {
     uuid: uuidv4(),
     label: 'Bank',
@@ -882,7 +1019,7 @@ export const PresonusFaderPort: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffffff',
-    midi: [0x90, 0x38, 0x7f],
+    midi: [0x90, 0x39, 0x7f],
   },
   // The second row
   {

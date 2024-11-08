@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { DisplayLine, DisplayWrapper } from './McuDisplay.styled';
 import { ControlPosition } from 'types';
 
+
 interface Props {
   line1: string;
   line2: string;

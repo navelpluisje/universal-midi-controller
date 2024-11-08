@@ -1,31 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ButtonControl } from 'mainWindow/components/MidiButton';
-import { EncoderControl } from 'mainWindow/components/MidiEncoder';
-import { FaderControl } from 'mainWindow/components/MidiFader';
-import { ToggleButtonControl } from 'mainWindow/components/MidiToggleButton';
-import { DisplayMCUControl } from 'mainWindow/components/MidiMcuDisplay';
-import { MidiTimeCodeControl } from 'mainWindow/components/MidiTimeCode';
-
-export interface ControllerDefinition {
-  name: string;
-  type: 'MCU' | 'FP';
-  deviceName: {
-    macOS: string;
-    windows: string;
-  };
-  controls: Array<
-    ButtonControl |
-    FaderControl |
-    ToggleButtonControl |
-    EncoderControl |
-    DisplayMCUControl |
-    MidiTimeCodeControl
-  >;
-}
+import { ControllerDefinition } from './types';
 
 export const McuStyle: ControllerDefinition = {
   name: 'MCU Style',
   type: 'MCU',
+  width: 50,
   deviceName: {
     macOS: '',
     windows: '',

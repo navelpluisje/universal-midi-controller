@@ -5,6 +5,7 @@ export declare global {
       onMidiMessage: (callback: MidiUpdateCallback) => void;
       onSysexMessage: (callback: MidiUpdateCallback) => void;
       sendMidiMessage: (midiMessage: MidiMessage) => void;
+      setWindowSize: (windowSize: WindowSize) => void;
     };
     windowAPI: {
       hideMidiMonitor: () => void;

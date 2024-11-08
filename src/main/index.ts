@@ -1,11 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
-import { MidiMessage } from '../types';
+import { MidiMessage, WindowSize } from '../types';
 import { getMidiData } from '../utils/getMidiData';
 import { MIDIDevice } from '../utils/midiDevice';
 import { createMainWindow } from './createMainWindow';
 import { createMidiMonitorWindow } from './createMidiMonitorWindow';
-// import { createMidiMonitorWindow } from './createMidiMonitorWindow';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -25,20 +24,27 @@ const createWindows = (): void => {
   midiMonitorWindow = createMidiMonitorWindow();
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
   midiDevice.midiInput.ignoreTypes(false, true, true);
   midiDevice.midiInput.on('message', (deltaTime: number, message: MidiMessage) => {
-    if (message.length < 4) {
-      const midiMessage = getMidiData(message, deltaTime);
-      midiMonitorWindow.webContents.send('midi-update', midiMessage);
-      mainWindow.webContents.send('midi-message', message);
+    try {
+      if (message.length < 4) {
+        const midiMessage = getMidiData(message, deltaTime);
+        midiMonitorWindow.webContents.send('midi-update', midiMessage);
+        mainWindow.webContents.send('midi-message', message);
 
-      return;
+        return;
+      }
+      mainWindow.webContents.send('sysex-message', message);
+    } catch (e) {
+      console.log('onMessage', e, message);
     }
-    mainWindow.webContents.send('sysex-message', message);
+
   });
 
-  mainWindow.webContents.openDevTools();
+  mainWindow.on('close', () => {
+    app.quit();
+  });
+  // mainWindow.webContents.openDevTools();
 
 };
 
@@ -82,12 +88,21 @@ ipcMain.handle('hide-midi-monitor', () => {
   }
 });
 
+ipcMain.handle('midi:send-message', (_, midiMessage: MidiMessage) => {
+  midiDevice.sendMessage(midiMessage);
+});
+
+ipcMain.handle('window:set-size', (_, windowSize: WindowSize) => {
+  try {
+    mainWindow.setSize(Math.floor(windowSize.width) + 1, Math.floor(windowSize.height) + 1, true);
+  } catch (e) {
+    console.log({ e });
+  }
+});
+
 app.whenReady().then(() => {
   installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err));
 });
 
-ipcMain.handle('midi:send-message', (_, midiMessage: MidiMessage) => {
-  midiDevice.sendMessage(midiMessage);
-});

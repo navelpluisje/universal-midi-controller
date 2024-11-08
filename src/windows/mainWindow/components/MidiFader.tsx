@@ -15,10 +15,15 @@ interface Props {
   settings: FaderControl;
 }
 
-export const MidiFader: FC<Props> = ({ settings: { midi, position } }) => {
+export const MidiFader: FC<Props> = ({ settings: { midi, position, touch } }) => {
   const { midiValue, sendValue } = useMidi({
     command: midi[0],
     key: midi[1],
+  });
+
+  const { sendValue: sendTouchValue } = useMidi({
+    command: touch[0],
+    key: touch[1],
   });
 
   const handleFaderMove = (val: number) => {
@@ -26,10 +31,12 @@ export const MidiFader: FC<Props> = ({ settings: { midi, position } }) => {
   };
 
   const handleFaderTouch = () => {
+    sendTouchValue(127);
     // Send midi message
   };
 
   const handleFaderRelease = () => {
+    sendTouchValue(0);
     // Send midi message
   };
 
