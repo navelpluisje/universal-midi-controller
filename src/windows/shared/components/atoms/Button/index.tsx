@@ -24,7 +24,7 @@ export interface Props {
   onClick?: () => void;
   color: string;
   active: boolean;
-  blinking: boolean;
+  blinking?: boolean;
   hasRGB: boolean;
   position: ControlPosition;
   type?: 'round' | 'default';
@@ -39,7 +39,7 @@ export const Button: FC<Props> = ({
   onClick,
   color,
   active,
-  blinking,
+  blinking = false,
   hasRGB,
   position,
   type = 'default',
