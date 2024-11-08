@@ -11,3 +11,4 @@ The idea is to create a tool that can emulate different controllers. Currently t
 - Checkout th repo
 - run `yarn install` (https://classic.yarnpkg.com/lang/en/docs/install/, please use version 1)
 - run `yarn start`
+- The MIDI device will appear as `NP Controller`
