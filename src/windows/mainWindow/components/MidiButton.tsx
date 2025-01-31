@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from 'react';
+import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Button } from 'shared/components/atoms';
 import { useMidi } from 'mainWindow/hooks/useMidi/useMidi';
 import { ButtonSizes } from 'shared/components/atoms/Button/types';
@@ -14,6 +14,7 @@ export interface ButtonControl {
   hasFeedback?: boolean;
   color?: string;
   midi: [number, number, number];
+  key?: string;
 }
 
 interface Props {
@@ -74,12 +75,36 @@ export const MidiButton: FC<Props> = ({ settings }) => {
     sendValue(0);
   }, []);
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.code === settings.key) {
+      handleButtonDown();
+    }
+  };
+
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.code === settings.key) {
+      handleButtonUp();
+    }
+  };
+
+  useEffect(() => {
+    if (settings.key) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [settings.key]);
+
   return (
     <Button
       onMouseDown={handleButtonDown}
       onMouseUp={handleButtonUp}
       active={active}
-      blinking={ blinking}
+      blinking={blinking}
       color={color}
       hasRGB={hasRGB}
       hasFeedback={hasFeedback}

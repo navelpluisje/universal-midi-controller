@@ -16,7 +16,7 @@ export interface Props {
    */
   hasFeedback?: boolean;
   /**
-   * Callback function for the click handling of the button
+   * Callback function for the click handling of the button 
    * @returns void
    */
   onMouseDown?: () => void;

@@ -114,7 +114,8 @@ export const PresonusFaderPort16: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffff00',
-    midi: [0x90, 0x06, 0x7f],
+    midi: [0x90, 0x46, 0x7f],
+    key: 'ShiftLeft',
   },
   // Displays
   {
@@ -1418,7 +1419,8 @@ export const PresonusFaderPort16: ControllerDefinition = {
     hasRGB: false,
     hasFeedback: true,
     color: '#ffff00',
-    midi: [0x90, 0x46, 0x7f],
+    midi: [0x90, 0x06, 0x7f],
+    key: 'ShiftRight',
   },
   /**
    * Automation buttons
